@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/Navinraaj/sit725-2022-t3-prac3#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "Express": "^3.0.1"
+    "mongodb": "^4.12.1"
   }
 }
