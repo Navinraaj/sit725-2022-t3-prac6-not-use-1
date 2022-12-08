@@ -1,32 +1,40 @@
-const cardList = [
-    {
-        title: "Hungry people",
-        image: "images/user-image.png",
-        link: "About Hungry people",
-        desciption: "Demo desciption about Hungry people"
-    },
-    {
-        title: "Food wastage",
-        image: "images/Food wastage.jpeg",
-        link: "About Food wastage",
-        desciption: "Demo desciption about Food wastage"
-    }
-]
+
+const getProjects = () => {
+    $.get('/api/projects',(response) => {
+        if(response.statusCode==200){
+            addCards(response.data);
+        }
+    })
+}
+
 const clickMe = () => {
     alert("Thanks for clicking me. Hope you have a nice day!")
 }
 $(".dropdown-trigger").dropdown();
 
 const submitForm = () => {
-    let formData = {};
-    formData.first_name = $('#first_name').val();
-    formData.last_name = $('#last_name').val();
-    formData.password = $('#password').val();
-    formData.email = $('#email').val();
-
-    console.log("Form Data Submitted: ", formData);
-}
-
+        let formData = {};
+        formData.title = $('#title').val();
+        formData.image = $('#image').val();
+        formData.link = $('#link').val();
+        formData.description = $('#description').val();
+       console.log("Form Data Submitted: ", formData);
+        addProjectToApp(formData);
+        
+    }
+    //ajax function...
+    const addProjectToApp = (project) => {
+        $.ajax({
+            url: '/api/projects',
+            data: project,
+            type: 'POST',
+            success: (result) => {
+                alert(result.message);
+                location.reload(); // it automatically reloads the page 
+            }
+        })
+    }
+    
 const addCards = (items) => {
     items.forEach(item => {
         let itemToAppend = '<div class="col s4 center-align">'+
@@ -42,12 +50,11 @@ const addCards = (items) => {
 }
 
 
-
 $(document).ready(function(){
     $('.materialboxed').materialbox();
     $('#formSubmit').click(()=>{
         submitForm();
     })
-    addCards(cardList);
+    getProjects();
     $('.modal').modal();
   });
