@@ -2,9 +2,8 @@ let client = express = require("../dbConnect");
 let projectCollection;
 const {MongoClient} = require('mongodb');
 
-
 setTimeout(() => {
-    projectCollection = client.db().collection("Projects");
+    projectCollection = client.db("test").collection("Homeless People");
 },2000)
 
 //install collection
