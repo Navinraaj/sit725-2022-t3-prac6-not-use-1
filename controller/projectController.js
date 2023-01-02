@@ -46,8 +46,6 @@ const retrieveProjects = (req, res) => {
         })
 }
 
-module.exports = {
-    retrieveProjects, createProjects
-    }
+module.exports = {retrieveProjects, createProjects}
     
 

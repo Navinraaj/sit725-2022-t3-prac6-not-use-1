@@ -3,12 +3,12 @@ let projectCollection;
 const {MongoClient} = require('mongodb');
 
 setTimeout(() => {
-    projectCollection = client.db("test").collection("Homeless People");
+    projectCollection = client.db().collection("Homeless People");
 },2000)
 
 //install collection
-const insertProjects = (profile,callback) => {
-    projectCollection.insert(profile,callback);
+const insertProjects = (project,callback) => {
+    projectCollection.insert(project,callback);
 }
 // get project...
 const getProjects = (callback) => {
